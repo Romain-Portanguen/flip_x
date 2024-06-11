@@ -1,28 +1,12 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
+import { GradientAnimatedBackground } from '../styles/background';
 
-const gradientAnimation = keyframes`
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-`;
-
-const Container = styled.div`
+const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  text-align: center;
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  background-size: 400% 400%;
-  animation: ${gradientAnimation} 15s ease infinite;
 `;
 
 const Title = styled.h1`
@@ -42,12 +26,14 @@ const Message = styled.p`
 export const UnsupportedViewport: React.FC = () => {
 
   return (
-    <Container>
-      <Title>FlipX</Title>
-      <Message>
-        Is not supported on your device. <br />
-        Go to a computer or tablet to play 🙂‍↔️
-      </Message>
-    </Container>
+    <GradientAnimatedBackground>
+      <ContentWrapper>
+        <Title>FlipX</Title>
+        <Message>
+          Is not supported on your device. <br />
+          Go to a computer or tablet to play 🙂‍↔️
+        </Message>
+      </ContentWrapper>
+    </GradientAnimatedBackground>
   );
 };

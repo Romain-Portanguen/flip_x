@@ -1,14 +1,18 @@
 import { CardProps } from '../../@types/card.types';
 import { generateInitialCards } from '../helper';
-import { NUMBER_OF_CARDS, FLIP_DELAY } from '../../@types/constants';
+import { EASY_FLIP_DELAY, HARD_FLIP_DELAY, IMPOSSIBLE_FLIP_DELAY, NORMAL_FLIP_DELAY, NUMBER_OF_CARDS } from '../../@types/constants';
 
 export class MemoryGame {
   private cards: CardProps[] = [];
   private flippedIndices: number[] = [];
   private attempts: number = 0;
   private matchedPairs: number = 0;
+  private difficulty: string;
+  private flipDelay: number = NORMAL_FLIP_DELAY;
 
-  constructor() {
+  constructor(difficulty: string = 'normal') {
+    this.difficulty = difficulty;
+    this.setFlipDelay();
     this.resetGame();
   }
 
@@ -24,6 +28,10 @@ export class MemoryGame {
     return this.matchedPairs;
   }
 
+  getFlipDelay(): number {
+    return this.flipDelay;
+  }
+
   flipCard(index: number): void {
     if (this.isCardFlippable(index)) {
       this.flippedIndices.push(index);
@@ -36,7 +44,7 @@ export class MemoryGame {
         } else {
           setTimeout(() => {
             this.resetFlippedCards();
-          }, FLIP_DELAY);
+          }, this.flipDelay);
         }
       }
     }
@@ -47,6 +55,31 @@ export class MemoryGame {
     this.flippedIndices = [];
     this.attempts = 0;
     this.matchedPairs = 0;
+  }
+
+  setGameParameters(difficulty: string): void {
+    this.difficulty = difficulty;
+    this.setFlipDelay();
+    this.resetGame();
+  }
+
+  private setFlipDelay(): void {
+    switch (this.difficulty) {
+      case 'easy':
+        this.flipDelay = EASY_FLIP_DELAY;
+        break;
+      case 'normal':
+        this.flipDelay = NORMAL_FLIP_DELAY;
+        break;
+      case 'hard':
+        this.flipDelay = HARD_FLIP_DELAY;
+        break;
+      case 'impossible':
+        this.flipDelay = IMPOSSIBLE_FLIP_DELAY;
+        break;
+      default:
+        this.flipDelay = NORMAL_FLIP_DELAY;
+    }
   }
 
   private isCardFlippable(index: number): boolean {

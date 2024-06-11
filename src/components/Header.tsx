@@ -6,7 +6,7 @@ const Container = styled.header`
   display: flex;
   height: 60px;
   justify-content: center;
-  width: 100%;
+  width: 60%;
 `;
 
 const Title = styled.h1`

@@ -16,14 +16,14 @@ const CardContainer = styled.div`
   }
 `;
 
-const CardInner = styled.div<{ isFlipped: boolean }>`
+const CardInner = styled.div<{ $isFlipped: boolean }>`
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   height: 100%;
   position: relative;
   text-align: center;
   transform-style: preserve-3d;
-  transform: ${(props) => (props.isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)')};
+  transform: ${(props) => (props.$isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)')};
   transition: transform 0.6s;
   width: 100%;
 `;
@@ -54,6 +54,7 @@ const CardFront = styled(CardFace)`
     border-radius: 10px;
     height: 100%;
     width: 100%;
+    object-fit: cover;
   }
 `;
 
@@ -73,7 +74,7 @@ export const GameCard: React.FC<GameCardProps> = ({
 
   return (
     <CardContainer onClick={onClick}>
-      <CardInner isFlipped={isFlipped || isMatched}>
+      <CardInner $isFlipped={isFlipped || isMatched}>
         <CardBack />
         <CardFront>{avatar ? <img src={avatar} alt="Avatar" /> : content}</CardFront>
       </CardInner>

@@ -1,6 +1,6 @@
 export const AVATAR_RESOLUTION_MULTIPLIER = 4;
 export const AVATAR_SIZE = 256;
-export const FLIP_DELAY = 900;
+export const FLIP_DELAY = 700;
 export const LIGHTNESS_MULTIPLIER = 25;
 export const LIGHTNESS_SCALE = 4;
 export const MAX_HUE = 360;

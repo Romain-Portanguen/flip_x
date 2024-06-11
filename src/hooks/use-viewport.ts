@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 export const useViewport = (minWidth: number, minHeight: number) => {
   const [isSupportedViewport, setIsSupportedViewport] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const checkViewport = () => {
@@ -12,6 +13,7 @@ export const useViewport = (minWidth: number, minHeight: number) => {
       } else {
         setIsSupportedViewport(true);
       }
+      setIsLoading(false);
     };
 
     checkViewport();
@@ -19,5 +21,5 @@ export const useViewport = (minWidth: number, minHeight: number) => {
     return () => window.removeEventListener('resize', checkViewport);
   }, [minWidth, minHeight]);
 
-  return isSupportedViewport;
+  return { isSupportedViewport, isLoading };
 };

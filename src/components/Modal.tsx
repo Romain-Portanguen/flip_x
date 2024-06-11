@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
 const ModalContainer = styled.div`
@@ -14,7 +14,7 @@ const ModalContainer = styled.div`
   z-index: 1000;
 `;
 
-const ModalWrapper = styled.div`
+export const ModalWrapper = styled.div`
   animation: fadeIn 0.3s ease-in-out;
   background: linear-gradient(to top, #002244, #004466);
   border-radius: 12px;
@@ -37,7 +37,7 @@ const ModalWrapper = styled.div`
   }
 `;
 
-const ModalTitle = styled.h2`
+export const ModalTitle = styled.h2`
   background: linear-gradient(to right, #66aacc, #99ccee);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -48,14 +48,14 @@ const ModalTitle = styled.h2`
   margin-bottom: 20px;
 `;
 
-const ModalContent = styled.p`
+export const ModalContent = styled.div`
   color: #fff;
   font-size: 1.2rem;
   line-height: 1.5;
   margin-bottom: 30px;
 `;
 
-const ModalButton = styled.button`
+export const ModalButton = styled.button`
   background: linear-gradient(to top, #3c99dc, #66ccff);
   border-radius: 6px;
   border: none;
@@ -79,17 +79,18 @@ const ModalButton = styled.button`
 
 interface ModalProps {
   title: string;
-  content: string;
+  content?: string;
+  children?: ReactNode;
   buttonText: string;
   onButtonClick: () => void;
 }
 
-export const Modal: React.FC<ModalProps> = ({ title, content, buttonText, onButtonClick }) => {
+export const Modal: React.FC<ModalProps> = ({ title, content, children, buttonText, onButtonClick }) => {
   return (
     <ModalContainer>
       <ModalWrapper>
         <ModalTitle>{title}</ModalTitle>
-        <ModalContent>{content}</ModalContent>
+        <ModalContent>{content}{children}</ModalContent>
         <ModalButton onClick={onButtonClick}>{buttonText}</ModalButton>
       </ModalWrapper>
     </ModalContainer>

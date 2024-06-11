@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { GlobalStyles } from './styles/globals';
 import { Header } from './components/Header';
@@ -7,6 +7,8 @@ import { GameBoard } from './components/GameBoard';
 import { UnsupportedViewport } from './components/UnsupportedViewport';
 import { useViewport } from './hooks/use-viewport';
 import { LoadingContent } from './components/LoadingContent';
+import { GameParameters } from './components/GameParameters';
+import { GearIcon } from './components/GearButton';
 
 const AppContainer = styled.div`
   align-items: center;
@@ -31,6 +33,13 @@ const AppContainer = styled.div`
 
 const App: React.FC = () => {
   const { isSupportedViewport, isLoading } = useViewport(600, 600);
+  const [showGameParameters, setShowGameParameters] = useState(false);
+  const [difficulty, setDifficulty] = useState('normal');
+
+  const handleSaveParameters = (newDifficulty: string) => {
+    setShowGameParameters(false);
+    setDifficulty(newDifficulty);
+  };
 
   if (isLoading) {
     return <LoadingContent />;
@@ -41,12 +50,19 @@ const App: React.FC = () => {
       <GlobalStyles />
       {isSupportedViewport ? (
         <AppContainer>
+          <GearIcon onClick={() => setShowGameParameters(true)} />
           <Header />
-          <GameBoard />
+          <GameBoard difficulty={difficulty} />
           <Footer />
         </AppContainer>
       ) : (
         <UnsupportedViewport />
+      )}
+      {showGameParameters && (
+        <GameParameters
+          onClose={() => setShowGameParameters(false)}
+          onSave={handleSaveParameters}
+        />
       )}
     </>
   );

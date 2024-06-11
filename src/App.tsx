@@ -6,6 +6,7 @@ import { Footer } from './components/Footer';
 import { GameBoard } from './components/GameBoard';
 import { UnsupportedViewport } from './components/UnsupportedViewport';
 import { useViewport } from './hooks/use-viewport';
+import { LoadingContent } from './components/LoadingContent';
 
 const AppContainer = styled.div`
   align-items: center;
@@ -29,7 +30,11 @@ const AppContainer = styled.div`
 `;
 
 const App: React.FC = () => {
-  const isSupportedViewport = useViewport(600, 600);
+  const { isSupportedViewport, isLoading } = useViewport(600, 600);
+
+  if (isLoading) {
+    return <LoadingContent />;
+  }
 
   return (
     <>

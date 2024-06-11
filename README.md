@@ -32,6 +32,8 @@ Try to find the pairs in as few attempts as possible! Have fun!
 
 ![](https://github.com/Romain-Portanguen/flip_x/blob/af15c09fcffe3763de6fb637529033b4b2ab334a/public/assets/game_progress.png)
 
+![](https://github.com/Romain-Portanguen/flip_x/blob/d6a827cc53a159b3c7113fea784eb0c6cfa2d0dc/public/assets/lighthouse.png)
+
  
 <h3>Prerequisites</h3>
 

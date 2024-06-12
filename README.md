@@ -35,11 +35,11 @@ Select the difficulty mode of your choice :
 
 and try to combine the pairs in as few attempts as possible! Have Fun!
 
-![](https://github.com/Romain-Portanguen/flip_x/blob/af15c09fcffe3763de6fb637529033b4b2ab334a/public/assets/game_start.png)
+![](https://github.com/Romain-Portanguen/flip_x/blob/8bfe9dac0fa898a402d9628d63926e7c336e188d/public/assets/game_start.png)
 
-![](https://github.com/Romain-Portanguen/flip_x/blob/af15c09fcffe3763de6fb637529033b4b2ab334a/public/assets/game_progress.png)
+![](https://github.com/Romain-Portanguen/flip_x/blob/8bfe9dac0fa898a402d9628d63926e7c336e188d/public/assets/game_progress.png)
 
-![](https://github.com/Romain-Portanguen/flip_x/blob/d6a827cc53a159b3c7113fea784eb0c6cfa2d0dc/public/assets/lighthouse.png)
+![](https://github.com/Romain-Portanguen/flip_x/blob/6cc501b4fe489a4f6192d37602f26b26ab416815/public/assets/lighthouse.png)
 
  
 <h3>Prerequisites</h3>

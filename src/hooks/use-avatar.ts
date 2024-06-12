@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { IconUtils } from '../utils/icon-utils/icon-utils';
-import { AVATAR_RESOLUTION_MULTIPLIER } from '../@types/constants';
+import { AVATAR_RESOLUTION_MULTIPLIER, AVATAR_SIZE } from '../@types/constants';
 
-export const useAvatar = (seed: string, size: number = 100) => {
+export const useAvatar = (seed: string, size: number = AVATAR_SIZE) => {
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(document.createElement('canvas'));
 

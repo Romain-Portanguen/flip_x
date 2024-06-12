@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { Modal } from './Modal';
 
@@ -48,12 +48,12 @@ interface GameParametersProps {
 }
 
 export const GameParameters: React.FC<GameParametersProps> = ({ onClose, onSave }) => {
-  const [difficulty, setDifficulty] = React.useState<string>(Difficulty.Normal);
+  const [difficulty, setDifficulty] = useState<string>(Difficulty.Normal);
 
-  const handleSave = () => {
+  const handleSave = useCallback(() => {
     onSave(difficulty);
     onClose();
-  };
+  }, [difficulty, onClose, onSave]);
 
   return (
     <Modal title="Game Parameters" buttonText="Save" onButtonClick={handleSave}>

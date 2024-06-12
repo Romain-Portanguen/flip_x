@@ -3,6 +3,14 @@ import { CardProps } from '../@types/card.types';
 import { IconUtils } from './icon-utils/icon-utils';
 import { AVATAR_SIZE, TIME_END_INDEX, TIME_START_INDEX } from '../@types/constants';
 
+function generateUniqueSeeds(numberOfPairs: number): string[] {
+  const seeds: Set<string> = new Set();
+  while (seeds.size < numberOfPairs) {
+    seeds.add(uuidv4());
+  }
+  return Array.from(seeds);
+}
+
 function generateAvatar(seed: string): string {
   const canvas = document.createElement('canvas');
   const options = IconUtils.buildOptions({ seed, size: AVATAR_SIZE });
@@ -27,14 +35,6 @@ export function shuffleArray<T>(array: T[]): T[] {
     [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
   }
   return shuffledArray;
-}
-
-function generateUniqueSeeds(numberOfPairs: number): string[] {
-  const seeds: Set<string> = new Set();
-  while (seeds.size < numberOfPairs) {
-    seeds.add(uuidv4());
-  }
-  return Array.from(seeds);
 }
 
 export function generateInitialCards(numberOfPairs: number): CardProps[] {

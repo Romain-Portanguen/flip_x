@@ -53,6 +53,10 @@ export const ModalContent = styled.div`
   font-size: 1.2rem;
   line-height: 1.5;
   margin-bottom: 30px;
+
+  p {
+    margin: 0;
+  }
 `;
 
 export const ModalButton = styled.button`
@@ -90,7 +94,10 @@ export const Modal: React.FC<ModalProps> = ({ title, content, children, buttonTe
     <ModalContainer>
       <ModalWrapper>
         <ModalTitle>{title}</ModalTitle>
-        <ModalContent>{content}{children}</ModalContent>
+        <ModalContent>
+          {content && <p dangerouslySetInnerHTML={{ __html: content }} />}
+          {children}
+        </ModalContent>
         <ModalButton onClick={onButtonClick}>{buttonText}</ModalButton>
       </ModalWrapper>
     </ModalContainer>

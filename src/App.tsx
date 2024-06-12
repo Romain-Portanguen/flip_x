@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { GlobalStyles } from './styles/globals';
 import { Header } from './components/Header';
@@ -9,6 +9,7 @@ import { useViewport } from './hooks/use-viewport';
 import { LoadingContent } from './components/LoadingContent';
 import { GameParameters } from './components/GameParameters';
 import { GearIcon } from './components/GearButton';
+import { Chronometer } from './components/Chronometer';
 
 const AppContainer = styled.div`
   align-items: center;
@@ -32,14 +33,23 @@ const AppContainer = styled.div`
 `;
 
 const App: React.FC = () => {
-  const { isSupportedViewport, isLoading } = useViewport(600, 600);
+  const { isSupportedViewport, isLoading } = useViewport(600, 700);
   const [showGameParameters, setShowGameParameters] = useState(false);
   const [difficulty, setDifficulty] = useState('normal');
+  const [isChronometerRunning, setIsChronometerRunning] = useState(false);
+  const [elapsedTime, setElapsedTime] = useState(0);
+  const chronometerRef = useRef<{ reset: () => void }>(null);
 
   const handleSaveParameters = (newDifficulty: string) => {
     setShowGameParameters(false);
     setDifficulty(newDifficulty);
   };
+
+  useEffect(() => {
+    if (!isChronometerRunning) {
+      setElapsedTime(0);
+    }
+  }, [isChronometerRunning]);
 
   if (isLoading) {
     return <LoadingContent />;
@@ -52,7 +62,23 @@ const App: React.FC = () => {
         <AppContainer>
           <GearIcon onClick={() => setShowGameParameters(true)} />
           <Header />
-          <GameBoard difficulty={difficulty} />
+          <Chronometer
+            isRunning={isChronometerRunning}
+            ref={chronometerRef}
+            onTick={(time: number) => setElapsedTime(time)}
+          />
+          <GameBoard
+            difficulty={difficulty}
+            onGameStart={() => setIsChronometerRunning(true)}
+            onGameEnd={() => setIsChronometerRunning(false)}
+            onGameRestart={() => {
+              if (chronometerRef.current) {
+                chronometerRef.current.reset();
+              }
+              setIsChronometerRunning(false);
+            }}
+            elapsedTime={elapsedTime}
+          />
           <Footer />
         </AppContainer>
       ) : (

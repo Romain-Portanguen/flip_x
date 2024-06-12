@@ -7,12 +7,15 @@ const CardContainer = styled.div`
   cursor: pointer;
   height: 110px;
   perspective: 1000px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: 100px;
 
   &:hover {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (min-width: 1048px) {
     transform: scale(1.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 `;
 
@@ -51,7 +54,7 @@ const CardFront = styled(CardFace)`
   transform: rotateY(180deg);
 
   & img {
-    border-radius: 10px;
+    border-radius: 8px;
     height: 100%;
     width: 100%;
     object-fit: cover;

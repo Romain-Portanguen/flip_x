@@ -15,11 +15,14 @@ const rotate = keyframes`
 `;
 
 const IconButton = styled.button`
+  align-items: center;
   background: none;
   border: none;
   color: #002244;
   cursor: pointer;
+  display: flex;
   font-size: 2rem;
+  justify-content: center;
   position: absolute;
   right: 60px;
   top: 45px;

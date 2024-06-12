@@ -3,24 +3,36 @@ import styled from 'styled-components';
 import { Modal } from './Modal';
 
 const FormContainer = styled.div`
+  align-items: stretch;
+  background-color: #002244;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  justify-content: center;
+  padding: 20px;
 `;
 
 const Label = styled.label`
-  color: #fff;
+  color: #ffffff;
   display: flex;
   flex-direction: column;
-  font-size: 1rem;
-  gap: 15px;
+  font-size: 1.2rem;
+  gap: 10px;
 `;
 
 const Select = styled.select`
-  border-radius: 4px;
+  background-color: #004466;
+  border-radius: 8px;
   border: 1px solid #ccc;
-  font-size: 1rem;
-  padding: 8px;
+  color: #ffffff;
+  font-size: 1.2rem;
+  padding: 10px;
+
+  &:focus {
+    border-color: #66ccff;
+    outline: none;
+  }
 `;
 
 enum Difficulty {
@@ -44,7 +56,7 @@ export const GameParameters: React.FC<GameParametersProps> = ({ onClose, onSave 
   };
 
   return (
-    <Modal title="Game Parameters" content="" buttonText="Save" onButtonClick={handleSave}>
+    <Modal title="Game Parameters" buttonText="Save" onButtonClick={handleSave}>
       <FormContainer>
         <Label>
           Difficulty:
